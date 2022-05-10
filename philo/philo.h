@@ -53,6 +53,7 @@ typedef struct s_info
 /*************** || UTILS.C || ***************/
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t count, size_t size);
-
+int		ft_strlen(const char *str);
+int		ft_puterr(char *err);
 
 #endif
