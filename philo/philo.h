@@ -56,4 +56,8 @@ void	*ft_calloc(size_t count, size_t size);
 int		ft_strlen(const char *str);
 int		ft_puterr(char *err);
 
+/*************** || INIT.C || ***************/
+void    ft_get_args(t_info *info, int ac, char **av);
+int 	ft_check_info(t_info info, int ac);
+
 #endif
