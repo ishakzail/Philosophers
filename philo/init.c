@@ -33,8 +33,8 @@ int ft_check_info(t_info info, int ac)
     if (info.time_to_die < 60)
         return (ft_puterr("ERROR : Wrong number of time_to_die\n"));
     if (info.time_to_eat < 60)
-        return (ft_puterr("ERROR : Wrong number of time_to_die\n"));
+        return (ft_puterr("ERROR : Wrong number of time_to_eat\n"));
     if (info.time_to_sleep < 60)
-        return (ft_puterr("ERROR : Wrong number of time_to_die\n"));
+        return (ft_puterr("ERROR : Wrong number of time_to_sleep\n"));
     return (SUCCESS);
 }
