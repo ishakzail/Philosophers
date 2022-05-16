@@ -38,3 +38,28 @@ int ft_check_info(t_info info, int ac)
         return (ft_puterr("ERROR : Wrong number of time_to_sleep\n"));
     return (SUCCESS);
 }
+
+int ft_init_mutex(t_info *info)
+{
+    int i;
+
+    i = 0;
+    pthread_mutex_init(info->msg_lock, NULL);
+    while (i < info->number_of_philosophers)
+        pthread_mutex_init(info->forks[i++], NULL);
+}
+
+int	ft_init_all(t_info *info, int ac, char **av)
+{
+	if (!info)
+		return (FAILURE);
+	ft_get_args(info, ac, av);
+	if (ft_check_info(*info, ac))
+		return (FAILURE);
+	info->philo = ft_calloc(info->number_of_philosophers, sizeof(t_philo));
+    info->flag = 0;
+    info->all_ate = 0;
+    ft_init_mutex(info);
+
+	return (SUCCESS);
+}
