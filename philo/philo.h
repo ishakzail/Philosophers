@@ -42,12 +42,12 @@ typedef struct s_info
 	int				time_to_sleep;
 	int				number_of_philosophers;
 	int				number_of_times_each_philosopher_must_eat;
-	int				finish;
+	int				flag;
 	int				all_ate;
 	long long		creation_time;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	finish_lock;
+	pthread_mutex_t	msg_lock;
 }	t_info;
 
 /*************** || UTILS.C || ***************/
@@ -59,5 +59,6 @@ int		ft_puterr(char *err);
 /*************** || INIT.C || ***************/
 void    ft_get_args(t_info *info, int ac, char **av);
 int 	ft_check_info(t_info info, int ac);
+int		ft_init_all(t_info *info, int ac, char **av);
 
 #endif
