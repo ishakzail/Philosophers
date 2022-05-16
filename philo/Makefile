@@ -10,4 +10,31 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = philo
 
+HEADER = philo.h
+
+CC = gcc
+
+FLAGS = -Wall -Wextra -Werror
+
+SRC =	philo.c utils.c init.c \
+	
+OBJ = $(SRC:%.c=%.o)
+
+OBJ_B = $(SRC_B:%.c=%.o)
+
+all: $(NAME)
+
+$(NAME) : $(OBJ) $(HEADER)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+
+bonus : $(NAME_BONUS)
+
+clean:
+	@rm -f *.o 
+
+fclean: clean
+	@rm -f philo
+
+re: fclean all
