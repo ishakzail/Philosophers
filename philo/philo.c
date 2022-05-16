@@ -25,28 +25,29 @@
 //    pthread_mutex_unlock(&mutex);
 // }
 
-void    eat(t_philo *philo)
+void    eat(int id)
 {
-    printf("Philo %d is eating\n", philo->id);
+    printf("Philo %d is eating\n", id);
 }
 
-void    ft_ssleep(t_philo *philo)
+void    ft_ssleep(int id)
 {
-    printf("Philo %d is sleeping\n", philo->id);
+    printf("Philo %d is sleeping\n", id);
+    usleep(20);
 }
 
-void    think(t_philo *philo)
+void    think(int id)
 {
-    printf("Philo %d is thinking\n", philo->id);
+    printf("Philo %d is thinking\n", id);
 }
 
 void    *routine(void *arg)
 {
     t_philo *philo;
-    arg = (void *)philo;
-    eat(arg);
-    ft_ssleep(arg);
-    think(arg);
+    philo = (t_philo *)arg;
+    eat(philo->id);
+    ft_ssleep(philo->id);
+    think(philo->id);
 }
 
 int main(int ac, char **av)
@@ -68,9 +69,8 @@ int main(int ac, char **av)
 
     t_info *info;
     info = ft_calloc(1, sizeof(*info));
-    info->philo = ft_calloc(info->number_of_philosophers, sizeof(t_philo));
-    ft_get_args(info, ac, av);
-    ft_check_info(*info, ac);
+    ft_init_all(info, ac, av);
+    
     int i = 0;
     while (i < info->number_of_philosophers)
     {
@@ -78,7 +78,7 @@ int main(int ac, char **av)
         info->philo[i].info = info;
         pthread_create(&info->philo[i].thread, NULL, routine, &info->philo[i]);
         i++;
-        usleep(1000);
+        usleep(100);
     }
     // printf("Number of philosopher : %d\n", info->number_of_philosophers);
     // printf("time to die: %d\n", info->time_to_die);
