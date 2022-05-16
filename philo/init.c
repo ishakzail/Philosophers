@@ -39,14 +39,17 @@ int ft_check_info(t_info info, int ac)
     return (SUCCESS);
 }
 
-int ft_init_mutex(t_info *info)
+void ft_init_mutex(t_info *info)
 {
     int i;
 
     i = 0;
-    pthread_mutex_init(info->msg_lock, NULL);
+    pthread_mutex_init(&info->msg_lock, NULL);
     while (i < info->number_of_philosophers)
-        pthread_mutex_init(info->forks[i++], NULL);
+    {
+        pthread_mutex_init(&info->forks[i], NULL);
+        i++;
+    }
 }
 
 int	ft_init_all(t_info *info, int ac, char **av)
@@ -57,9 +60,11 @@ int	ft_init_all(t_info *info, int ac, char **av)
 	if (ft_check_info(*info, ac))
 		return (FAILURE);
 	info->philo = ft_calloc(info->number_of_philosophers, sizeof(t_philo));
+    info->forks = ft_calloc(info->number_of_philosophers,
+			sizeof(pthread_mutex_t));
     info->flag = 0;
     info->all_ate = 0;
     ft_init_mutex(info);
-
+    create_philo(info);
 	return (SUCCESS);
 }
