@@ -51,6 +51,7 @@ typedef struct s_info
 }	t_info;
 
 /*************** || UTILS.C || ***************/
+
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_strlen(const char *str);
@@ -59,6 +60,14 @@ int		ft_puterr(char *err);
 /*************** || INIT.C || ***************/
 void    ft_get_args(t_info *info, int ac, char **av);
 int 	ft_check_info(t_info info, int ac);
+void 	ft_init_mutex(t_info *info);
 int		ft_init_all(t_info *info, int ac, char **av);
+
+/*************** || ACTION.C || ***************/
+void    take_fork(t_philo *philo, int f);
+void    put_fork(t_philo *philo, int f1 , int f2);
+void    eat(t_philo *philo);
+void    *action(void *arg);
+void    create_philo(t_info *info);
 
 #endif
