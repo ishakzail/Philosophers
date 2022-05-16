@@ -91,7 +91,7 @@ int	ft_strlen(const char *str)
 void	ft_print_msg(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->info->msg_lock);
-	if (!philo->info->finish)
+	if (!philo->info->flag)
 		printf("%lli\t%i\t%s\n", ft_current_time(philo), philo->id + 1, msg);
 	pthread_mutex_unlock(&philo->info->msg_lock);
 }
