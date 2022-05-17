@@ -12,6 +12,14 @@
 
 #include "philo.h"
 
+int	ft_is_digit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
+
 int	ft_atoi(const char *str)
 {
 	int			signe;
@@ -61,7 +69,7 @@ long long	ft_get_time(void)
 	t_time	current_time;
 
 	gettimeofday(&current_time, NULL);
-	return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
+	return (current_time.tv_sec);
 }
 
 long long	ft_current_time(t_philo *philo)
@@ -92,6 +100,6 @@ void	ft_print_msg(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->info->msg_lock);
 	if (!philo->info->flag)
-		printf("%lli\t%i\t%s\n", ft_current_time(philo), philo->id + 1, msg);
+		printf("%lli  %i %s", ft_current_time(philo), philo->id + 1, msg);
 	pthread_mutex_unlock(&philo->info->msg_lock);
 }
