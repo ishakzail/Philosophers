@@ -19,14 +19,14 @@ void    ft_get_args(t_info *info, int ac, char **av)
     info->time_to_eat = ft_atoi(av[3]);
     info->time_to_sleep = ft_atoi(av[4]);
     if (ac == 6)
-        info->number_of_times_each_philosopher_must_eat = ft_atoi(av[5]);
+        info->number_of_meals = ft_atoi(av[5]);
     else
-        info->number_of_times_each_philosopher_must_eat = -1;
+        info->number_of_meals = -1;
 }
 
 int ft_check_info(t_info info, int ac)
 {
-    if (ac == 6 && info.number_of_times_each_philosopher_must_eat == 0)
+    if (ac == 6 && info.number_of_meals == 0)
         return (ft_puterr("ERROR : Wrong num of must_eat\n"));
     if (info.number_of_philosophers < 0)
         return (ft_puterr("ERROR : Wrong number of philosophers"));
@@ -62,6 +62,8 @@ int	ft_init_all(t_info *info, int ac, char **av)
 	info->philo = ft_calloc(info->number_of_philosophers, sizeof(t_philo));
     info->forks = ft_calloc(info->number_of_philosophers,
 			sizeof(pthread_mutex_t));
+    if (!info->philo || !info->forks)
+        return (SUCCESS);
     info->flag = 0;
     info->all_ate = 0;
     ft_init_mutex(info);
