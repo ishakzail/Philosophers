@@ -15,7 +15,11 @@
 int main(int ac, char **av)
 {
     t_info *info;
+
+    if (ac < 5 || ac > 6)
+        return (printf("Error\n"), 0);
     info = ft_calloc(1, sizeof(*info));
+    // printf("current time : %lld\n", ft_get_time() / (365 * 12) );
     ft_init_all(info, ac, av);
     // create_philo(info);
     // int i = 0;
@@ -27,6 +31,5 @@ int main(int ac, char **av)
     //     i++;
     //     usleep(100);
     // }
-
     return (0);
 }
