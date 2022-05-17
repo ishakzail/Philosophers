@@ -41,7 +41,7 @@ typedef struct s_info
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				number_of_philosophers;
-	int				number_of_times_each_philosopher_must_eat;
+	int				number_of_meals;
 	int				flag;
 	int				all_ate;
 	long long		creation_time;
@@ -52,22 +52,31 @@ typedef struct s_info
 
 /*************** || UTILS.C || ***************/
 
-int		ft_atoi(const char *str);
-void	*ft_calloc(size_t count, size_t size);
-int		ft_strlen(const char *str);
-int		ft_puterr(char *err);
+int			ft_is_digit(int c);
+int			ft_atoi(const char *str);
+void		*ft_calloc(size_t count, size_t size);
+int			ft_strlen(const char *str);
+int			ft_puterr(char *err);
+void		ft_print_msg(t_philo *philo, char *msg);
+long long	ft_current_time(t_philo *philo);
+long long	ft_get_time(void);
 
 /*************** || INIT.C || ***************/
+
 void    ft_get_args(t_info *info, int ac, char **av);
 int 	ft_check_info(t_info info, int ac);
 void 	ft_init_mutex(t_info *info);
 int		ft_init_all(t_info *info, int ac, char **av);
 
 /*************** || ACTION.C || ***************/
+
 void    take_fork(t_philo *philo, int f);
 void    put_fork(t_philo *philo, int f1 , int f2);
 void    eat(t_philo *philo);
+void    ft_sleep(t_philo *philo);
+void    think(t_philo *philo);
 void    *action(void *arg);
 void    create_philo(t_info *info);
+
 
 #endif
