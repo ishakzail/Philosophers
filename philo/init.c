@@ -54,13 +54,14 @@ void ft_init_mutex(t_info *info)
 
 int	ft_init_all(t_info *info, int ac, char **av)
 {
+    int i = 0;
 	if (!info)
 		return (FAILURE);
 	ft_get_args(info, ac, av);
 	if (ft_check_info(*info, ac))
 		return (FAILURE);
 	info->philo = ft_calloc(info->number_of_philosophers, sizeof(t_philo));
-    info->forks = ft_calloc(info->number_of_philosophers,
+    info->forks = ft_calloc(info->number_of_philosophers , 
 			sizeof(pthread_mutex_t));
     if (!info->philo || !info->forks)
         return (SUCCESS);
