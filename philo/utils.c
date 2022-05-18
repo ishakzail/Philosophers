@@ -69,7 +69,7 @@ long long	ft_get_time(void)
 	t_time	current_time;
 
 	gettimeofday(&current_time, NULL);
-	return (current_time.tv_sec);
+	return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
 }
 
 long long	ft_current_time(t_philo *philo)
@@ -100,6 +100,6 @@ void	ft_print_msg(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->info->msg_lock);
 	if (!philo->info->flag)
-		printf("%lli  %i %s", ft_current_time(philo), philo->id + 1, msg);
+		printf("%lli\t%i %s", ft_current_time(philo), philo->id, msg);
 	pthread_mutex_unlock(&philo->info->msg_lock);
 }
