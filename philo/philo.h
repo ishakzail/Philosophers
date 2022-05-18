@@ -28,7 +28,7 @@ typedef struct s_info	t_info;
 typedef struct s_philo
 {
 	int			id;
-	int			ate;
+	int			num_ate;
 	int			should_die;
 	long long	last_meal;
 	t_info		*info;
@@ -78,5 +78,9 @@ void    think(t_philo *philo);
 void    *action(void *arg);
 void    create_philo(t_info *info);
 
+/*************** || CHECK.C || ***************/
+
+void    *check_death(void *arg);
+void	*check_all_ate(void *arg);
 
 #endif
