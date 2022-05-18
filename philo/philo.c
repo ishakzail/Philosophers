@@ -12,6 +12,22 @@
 
 #include "philo.h"
 
+void	ft_join_free(t_info *info)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->number_of_philosophers)
+		pthread_join(info->philo[i++].thread, NULL);
+	free(info->philo);
+	i = 0;
+	while (i < info->number_of_philosophers)
+		pthread_mutex_destroy(&info->forks[i++]);
+	pthread_mutex_destroy(&info->msg_lock);
+	free(info->forks);
+	free(info);
+}
+
 int main(int ac, char **av)
 {
     t_info *info;
@@ -19,17 +35,7 @@ int main(int ac, char **av)
     if (ac < 5 || ac > 6)
         return (printf("Error\n"), 0);
     info = ft_calloc(1, sizeof(*info));
-    // printf("current time : %lld\n", ft_get_time() / (365 * 12) );
-    ft_init_all(info, ac, av);
-    // create_philo(info);
-    // int i = 0;
-    // while (i < info->number_of_philosophers)
-    // {
-    //     info->philo[i].id = i;
-    //     info->philo[i].info = info;
-    //     pthread_create(&info->philo[i].thread, NULL, routine, (void *)&info->philo[i]);
-    //     i++;
-    //     usleep(100);
-    // }
+    if (ft_init_all(info, ac, av) == 0)
+        ft_join_free(info);
     return (0);
 }
