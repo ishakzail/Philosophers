@@ -69,9 +69,9 @@ void    *action(void *arg)
             // break;
             ft_usleep(philo->info->time_to_die);
             // ft_print_msg(philo, "died\n");
-            // break;
+            break;
         }
-       take_fork(philo, l_fork);
+        take_fork(philo, l_fork);
         eat(philo);
         put_fork(philo, r_fork, l_fork);
         sleep_then_think(philo);
@@ -95,7 +95,7 @@ void    create_philo(t_info *info)
         info->philo[i].num_ate = 0;
         pthread_create(&info->philo[i].thread, NULL, &action, &info->philo[i]);
         pthread_create(&thread, NULL, &check_death, &info->philo[i]);
-        pthread_join(thread, NULL);
+        pthread_detach(thread);
         i++;
         usleep(100);
     }
