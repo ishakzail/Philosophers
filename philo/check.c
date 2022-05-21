@@ -25,7 +25,7 @@ void    *check_death(void *arg)
             philo->should_die = 1;
             philo->info->flag = 1;
         }
-        usleep(100);
+        // ft_usleep(100);
     }
     return (NULL);
 }
