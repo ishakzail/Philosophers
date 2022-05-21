@@ -44,7 +44,7 @@ typedef struct s_info
 	int				number_of_meals;
 	int				flag;
 	int				all_ate;
-	long long		creation_time;
+	long long		start_time;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	msg_lock;
@@ -60,6 +60,7 @@ int			ft_puterr(char *err);
 void		ft_print_msg(t_philo *philo, char *msg);
 long long	ft_current_time(t_philo *philo);
 long long	ft_get_time(void);
+void		ft_usleep(int time);
 
 /*************** || INIT.C || ***************/
 
@@ -71,6 +72,7 @@ int		ft_init_all(t_info *info, int ac, char **av);
 /*************** || ACTION.C || ***************/
 
 void    take_fork(t_philo *philo, int f);
+// void    take_fork(t_philo *philo, int f1 , int f2);
 void    put_fork(t_philo *philo, int f1 , int f2);
 void    eat(t_philo *philo);
 void    ft_sleep(t_philo *philo);
