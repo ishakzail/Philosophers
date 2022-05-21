@@ -80,22 +80,13 @@ long long	ft_current_time(t_philo *philo)
 	return (time);
 }
 
-// void	ft_usleep(int time)
-// {
-// 	long	start;
-
-// 	start = get_time();
-// 	while (get_time() < start + time)
-// 		usleep(10);
-// }
-
 void	ft_usleep(int time)
 {
 	long  t;
 	
 	t = ft_get_time();
-	while (ft_get_time() < time + t)
-		usleep(10);
+	while (ft_get_time() - t < time)
+		usleep(1);
 }
 
 int	ft_puterr(char *err)
