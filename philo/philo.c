@@ -39,3 +39,9 @@ int main(int ac, char **av)
         ft_join_free(info);
     return (0);
 }
+
+// ./philo 1 800 200 200 	the philo should not eat and should die
+// ./philo 5 800 200 200 	no one should die
+// ./philo 5 800 200 200 7	no one should die and the simulation stop when all the philo has eaten at least 7 times 
+// ./philo 4 410 200 200	no philo should die
+// ./philo 4 310 200 100	a philo should die
