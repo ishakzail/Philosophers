@@ -95,13 +95,17 @@ void    create_philo(t_info *info)
         info->philo[i].num_ate = 0;
         pthread_create(&info->philo[i].thread, NULL, &action, &info->philo[i]);
         pthread_create(&thread, NULL, &check_death, &info->philo[i]);
+        
         pthread_detach(thread);
+        
         i++;
         usleep(100);
     }
     if (info->number_of_meals >= 0)
     {
         pthread_create(&thread, NULL, &check_all_ate, info);
+        // printf("flag 0 == %d\n", info->flag);
 		pthread_detach(thread);
     }
+    // printf("flag 1 == %d\n", info->flag);
 }
