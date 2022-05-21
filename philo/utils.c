@@ -95,7 +95,7 @@ void	ft_usleep(int time)
 	
 	t = ft_get_time();
 	while (ft_get_time() < time + t)
-		usleep(1);
+		usleep(10);
 }
 
 int	ft_puterr(char *err)
