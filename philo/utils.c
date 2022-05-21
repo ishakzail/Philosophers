@@ -76,8 +76,26 @@ long long	ft_current_time(t_philo *philo)
 {
 	long long	time;
 
-	time = ft_get_time() - philo->info->creation_time;
+	time = ft_get_time() - philo->info->start_time;
 	return (time);
+}
+
+// void	ft_usleep(int time)
+// {
+// 	long	start;
+
+// 	start = get_time();
+// 	while (get_time() < start + time)
+// 		usleep(10);
+// }
+
+void	ft_usleep(int time)
+{
+	long  t;
+	
+	t = ft_get_time();
+	while (ft_get_time() < time + t)
+		usleep(1);
 }
 
 int	ft_puterr(char *err)
@@ -100,6 +118,6 @@ void	ft_print_msg(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->info->msg_lock);
 	if (!philo->info->flag)
-		printf("%lli\t%i %s", ft_current_time(philo), philo->id, msg);
+		printf("%lli\t%i %s", ft_current_time(philo), philo->id + 1, msg);
 	pthread_mutex_unlock(&philo->info->msg_lock);
 }
