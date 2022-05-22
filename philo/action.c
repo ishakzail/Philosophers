@@ -68,13 +68,14 @@ void    *action(void *arg)
             // pthread_detach(one_philo);
             // break;
             ft_usleep(philo->info->time_to_die);
-            // ft_print_msg(philo, "died\n");
             break;
         }
         take_fork(philo, l_fork);
         eat(philo);
         put_fork(philo, r_fork, l_fork);
         sleep_then_think(philo);
+        usleep(10);
+        // printf("all_ate == %d\n", philo->info->all_ate);
     }
     return (NULL);
 }
