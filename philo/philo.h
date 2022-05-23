@@ -74,7 +74,8 @@ int		ft_init_all(t_info *info, int ac, char **av);
 void    take_fork(t_philo *philo, int f);
 // void    take_fork(t_philo *philo, int f1 , int f2);
 void    put_fork(t_philo *philo, int f1 , int f2);
-void    eat(t_philo *philo);
+// void    eat(t_philo *philo);
+void    eat(t_philo *philo, int f1, int f2);
 void    ft_sleep(t_philo *philo);
 void    think(t_philo *philo);
 void    *action(void *arg);
@@ -84,5 +85,8 @@ void    create_philo(t_info *info);
 
 void    *check_death(void *arg);
 void	*check_all_ate(void *arg);
+
+
+void    init_philo(t_info *info);
 
 #endif
