@@ -19,13 +19,13 @@ void    *check_death(void *arg)
     philo = (t_philo *)arg;
     while (!philo->info->flag)
     {
-        if ((philo->last_meal + philo->info->time_to_die) < ft_get_time())
+        if ((philo->last_meal + philo->info->time_to_die)  == ft_get_time())
         {
             ft_print_msg(philo, "died\n");
             philo->should_die = 1;
             philo->info->flag = 1;
         }
-        // usleep(100);
+        usleep(10);
     }
     return (NULL);
 }
