@@ -82,11 +82,13 @@ long long	ft_current_time(t_philo *philo)
 
 void	ft_usleep(int time)
 {
-	long  t;
-	
+	long long  t;
+	long long time2;
+
+	time2 =  time;
 	t = ft_get_time();
-	while (ft_get_time() - t < time)
-		usleep(10);
+	while (ft_get_time() - t < time2)
+		usleep(1);
 }
 
 int	ft_puterr(char *err)
