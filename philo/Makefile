@@ -18,7 +18,7 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC =	philo.c utils.c init.c action.c check.c\
+SRC =	philo.c utils.c utils2.c init.c action.c check.c routine.c\
 	
 OBJ = $(SRC:%.c=%.o)
 
