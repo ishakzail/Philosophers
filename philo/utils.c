@@ -6,13 +6,13 @@
 /*   By: izail <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:55:56 by izail             #+#    #+#             */
-/*   Updated: 2022/05/10 14:55:57 by izail            ###   ########.fr       */
+/*   Updated: 2022/05/25 21:54:28 by izail            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_is_digit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
@@ -64,33 +64,6 @@ void	*ft_calloc(size_t count, size_t size)
 	return ((void *)p);
 }
 
-long long	ft_get_time(void)
-{
-	t_time	current_time;
-
-	gettimeofday(&current_time, NULL);
-	return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
-}
-
-long long	ft_current_time(t_philo *philo)
-{
-	long long	time;
-
-	time = ft_get_time() - philo->info->start_time;
-	return (time);
-}
-
-void	ft_usleep(int time)
-{
-	long long  t;
-	long long time2;
-
-	time2 =  time;
-	t = ft_get_time();
-	while (ft_get_time() - t < time2)
-		usleep(1);
-}
-
 int	ft_puterr(char *err)
 {
 	write(STDERR_FILENO, err, ft_strlen(err));
@@ -105,12 +78,4 @@ int	ft_strlen(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void	ft_print_msg(t_philo *philo, char *msg)
-{
-	pthread_mutex_lock(&philo->info->msg_lock);
-	if (!philo->info->flag)
-		printf("%lli\t%i %s", ft_current_time(philo), philo->id + 1, msg);
-	pthread_mutex_unlock(&philo->info->msg_lock);
 }
