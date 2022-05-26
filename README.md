@@ -69,4 +69,4 @@ In this version the specific rules are:
 
 - One fork between each philosopher, therefore if they are multiple philosophers, there will be a fork at the right and the left of each philosopher.
 - To avoid philosophers duplicating forks, you should protect the forks state with a mutex for each of them.
-- Each philosopher should be a thread                                                                                                                                             |
+- Each philosopher should be a thread.                                                                                                                  
